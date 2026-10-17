@@ -224,11 +224,11 @@ html.scrolled .scrollhint{opacity:0;pointer-events:none}
 .legendk .mk .ic-svg{width:14px;height:14px}
 .tblwrap{margin-top:var(--s-4);width:100%}
 .tbl{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:0;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 0 0 1px var(--line-strong),var(--shadow)}
-.tbl col.c{width:84px}
-.tbl thead th{background:var(--surface);color:#fff;vertical-align:bottom;text-align:center;padding:14px 6px}
+.tbl col.c{width:68px}
+.tbl thead th{background:var(--surface);color:#fff;vertical-align:bottom;text-align:center;padding:14px 4px}
 .tbl thead th:first-child{text-align:left;padding-left:16px;font-size:.875rem;font-weight:700;color:var(--teal-lite)}
 .tbl thead th.star{background:#0F5A55}
-.tbl .pn{display:block;font-family:var(--display);font-weight:700;font-size:1.0625rem;line-height:1}
+.tbl .pn{display:block;font-family:var(--display);font-weight:700;font-size:.9375rem;line-height:1}
 .tbl .pq{display:none;margin-top:8px;font-weight:500;font-size:.75rem;line-height:1.35;color:#CFEDEA}
 .tbl .badge{display:block;width:fit-content;margin:0 auto 8px;padding:3px 8px;border-radius:var(--pill);background:var(--guirnalda);color:var(--night);font-weight:700;font-size:.625rem;line-height:1.2}
 .tbl tbody th,.tbl tbody td{border-top:1px solid var(--line);padding:11px 6px;text-align:center;vertical-align:middle}
@@ -238,9 +238,10 @@ html.scrolled .scrollhint{opacity:0;pointer-events:none}
 .mk{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:9px;background:var(--teal);color:var(--night)}
 .mk .ic-svg{width:17px;height:17px;stroke-width:3.4}
 .nm{display:inline-block;color:var(--muted);font-weight:700;font-size:1.25rem;line-height:1;font-style:normal}
+.mtn{font-family:var(--display);font-weight:700;font-size:.8125rem;line-height:1.1;color:var(--muted)}
 .plan-cta{display:grid;gap:12px;margin-top:var(--s-3)}
-.plan-cta .btn{width:100%}
-@media(min-width:700px){.tbl col.c{width:170px}.tbl .pn{font-size:1.5rem}.tbl .pq{display:block}.tbl .badge{font-size:.6875rem;padding:4px 10px}.plan-cta{grid-template-columns:1fr 1fr}}
+.plan-cta .btn{width:100%;padding-block:8px}
+@media(min-width:700px){.tbl col.c{width:150px}.tbl .pn{font-size:1.5rem}.tbl .pq{display:block}.tbl .badge{font-size:.6875rem;padding:4px 10px}.tbl .mtn{font-size:.9375rem}.plan-cta{grid-template-columns:repeat(3,1fr)}}
 
 /* 06 · el cartel */
 #cartel h2,#encargo h2{max-width:12em}
@@ -293,12 +294,12 @@ html.hz .arrow:hover{background:var(--teal);transform:scale(1.06)}
 html.hz .arrow[disabled]{opacity:0;pointer-events:none}
 html.hz .arrow .ic-svg{width:22px;height:22px;stroke-width:2.4}
 html.hz #problema .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-7);align-items:center}
-html.hz #incluye .wrap{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:var(--s-6);align-items:center}
+html.hz #incluye .wrap{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:var(--s-6);align-items:center;max-width:1320px}
 html.hz #incluye .inc-left{display:block}
 html.hz #incluye .tblwrap{margin-top:0;order:0}
 html.hz #incluye .plan-cta,html.hz #incluye .note{order:0}
 html.hz #incluye .plan-cta{grid-template-columns:1fr}
-html.hz .tbl col.c{width:clamp(150px,17vw,230px)}
+html.hz .tbl col.c{width:clamp(100px,10vw,140px)}
 html.hz .tbl thead th{padding-top:10px;padding-bottom:10px}
 html.hz .tbl tbody th,html.hz .tbl tbody td{padding-top:8px;padding-bottom:8px}
 html.hz .tbl tbody th{font-size:.875rem}
@@ -402,10 +403,10 @@ html.hz #cierre .wrap{grid-template-columns:minmax(0,640px);align-items:start;ma
 <section class="frame bg-teal" id="formula" data-title="La idea" aria-labelledby="t-formula">
   <div class="wrap">
     <p class="eyebrow rv"><b class="n"></b> · la idea</p>
-    <h2 id="t-formula" class="big rv" style="--d:1">QR + tu página + WhatsApp.<span class="simple">Simple.</span></h2>
+    <h2 id="t-formula" class="big rv" style="--d:1">Tu página + Google + WhatsApp.<span class="simple">Simple.</span></h2>
     <div class="fx rv" style="--d:2" aria-hidden="true">
-      <span class="t"><svg class="ic-svg" viewBox="0 0 24 24"><use href="#i-qr"/></svg></span><span class="pl">+</span>
       <span class="t"><svg class="ic-svg" viewBox="0 0 24 24"><use href="#i-globe"/></svg></span><span class="pl">+</span>
+      <span class="t"><svg class="ic-svg" viewBox="0 0 24 24"><use href="#i-search"/></svg></span><span class="pl">+</span>
       <span class="t"><svg class="ic-svg" viewBox="0 0 24 24"><use href="#i-chat"/></svg></span>
     </div>
     <p class="lead rv" style="--d:3">Sin tienda online, sin cargar todo tu catálogo y sin dejar Instagram.</p>
@@ -418,23 +419,20 @@ html.hz #cierre .wrap{grid-template-columns:minmax(0,640px);align-items:start;ma
     <div class="inc-left">
       <p class="eyebrow rv"><b class="n"></b> · la propuesta</p>
       <h2 id="t-incluye" class="rv" style="--d:1">Lo que <em>incluye</em></h2>
-      <p class="lead inc-lead rv" style="--d:2">Dos formas de empezar. Elegí la que se parece a tu negocio.</p>
+      <p class="lead inc-lead rv" style="--d:2">Tres pasos, de menor a mayor. Empezá por el que se parece a tu negocio.</p>
       <p class="legendk rv" style="--d:3" aria-hidden="true"><span><i class="mk"><svg class="ic-svg" viewBox="0 0 24 24"><use href="#i-check"/></svg></i>Incluido</span><span><i class="nm">—</i>No incluido en ese plan</span></p>
       <div class="plan-cta rv" style="--d:2">
-        <button type="button" class="btn ghost" data-plan="plan_negocio">Quiero Negocio conectado <svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        <button type="button" class="btn" data-plan="plan_encargos">Quiero Encargos y turnos <svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button type="button" class="btn" data-plan="plan_landing">Quiero mi landing <svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button type="button" class="btn ghost" data-plan="plan_sitio">Quiero mi sitio completo <svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button type="button" class="btn ghost" data-plan="plan_conectado">Quiero automatizar mis ventas <svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button>
       </div>
       <p class="note rv" style="--d:3">Sin precios acá: te pasamos los valores por WhatsApp, claros y sin vueltas.</p>
     </div>
     <div class="tblwrap rv" style="--d:1">
       <table class="tbl">
         <caption class="sr">Qué incluye cada plan</caption>
-        <colgroup><col><col class="c"><col class="c"></colgroup>
-        <thead><tr>
-          <th scope="col">Incluye</th>
-          <th scope="col"><span class="pn">Negocio conectado</span><span class="pq">“Me compran, pero no me vuelven a encontrar”</span></th>
-          <th scope="col" class="star"><span class="badge">El más completo</span><span class="pn">Encargos y turnos</span><span class="pq">“Ya me piden por WhatsApp y quiero ordenarlo”</span></th>
-        </tr></thead>
+        <colgroup><col><col class="c"><col class="c"><col class="c"></colgroup>
+        <thead id="thead"></thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
@@ -442,13 +440,13 @@ html.hz #cierre .wrap{grid-template-columns:minmax(0,640px);align-items:start;ma
 </section>
 
 <!-- 06 · del negocio al celular -->
-<section class="frame photo on-dark" id="cartel" data-title="El cartel" aria-labelledby="t-cartel">
+<section class="frame photo on-dark" id="cartel" data-title="Tu QR" aria-labelledby="t-cartel">
   <div class="bg" data-photo="qr-cartel" style="--veil:.66"></div>
   <div class="wrap">
-    <p class="eyebrow rv"><b class="n"></b> · el cartel</p>
-    <h2 id="t-cartel" class="rv" style="--d:1">De tu negocio a su celular.</h2>
-    <p class="lead rv" style="--d:2">Un cartel con tu QR donde atendés. Lo escanean, te guardan y te encuentran cuando quieran.</p>
-    <p class="qrnote rv" style="--d:3"><span class="qrtile leaf" aria-hidden="true"><svg class="ic-svg" viewBox="0 0 24 24"><use href="#i-qr"/></svg></span>El cartel impreso es parte de lo que entregamos.</p>
+    <p class="eyebrow rv"><b class="n"></b> · tu QR</p>
+    <h2 id="t-cartel" class="rv" style="--d:1">Tu QR ya está donde atendés. ¿A dónde <em>lleva</em>?</h2>
+    <p class="lead rv" style="--d:2">Que lleve a tu página: ahí te conocen, te escriben y te vuelven a encontrar cuando quieran.</p>
+    <p class="qrnote rv" style="--d:3"><span class="qrtile leaf" aria-hidden="true"><svg class="ic-svg" viewBox="0 0 24 24"><use href="#i-qr"/></svg></span>Si todavía no tenés QR, te lo hacemos nosotros.</p>
   </div>
 </section>
 
@@ -488,7 +486,7 @@ html.hz #cierre .wrap{grid-template-columns:minmax(0,640px);align-items:start;ma
       <p class="eyebrow rv"><b class="n"></b> · cierre</p>
       <h2 id="t-cierre" class="rv" style="--d:1">Que te vuelvan a encontrar</h2>
       <p class="lead text rv" style="--d:2">No se trata de tener página porque “hay que tener”. Se trata de que el que te compró una vez te pueda volver a comprar.</p>
-      <p class="tagline rv" style="--d:3">QR + tu página + WhatsApp. Simple.</p>
+      <p class="tagline rv" style="--d:3">Tu página + Google + WhatsApp. Simple.</p>
       <div class="ctas rv" style="--d:3"><a class="btn" href="#" data-wa data-track="cierre">Quiero ver cómo quedaría lo mío <svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
     </div>
     <footer class="foot rv">
@@ -514,6 +512,16 @@ html.hz #cierre .wrap{grid-template-columns:minmax(0,640px);align-items:start;ma
 const root = document.documentElement;
 root.classList.add('js');
 
+/* ================== NIVELES ==================
+   Los 3 pasos de la propuesta, de menor a mayor valor. Para cambiar un nombre, tocar solo `nombre`:
+   la tabla, el encabezado y los mensajes de WhatsApp lo toman de acá. `top` marca el más completo. */
+const NIVELES = [
+  { id: 'landing',   nombre: 'Arranque',          frase: 'Me compran, pero no me encuentran' },
+  { id: 'sitio',     nombre: 'Marcha',            frase: 'Ya me piden y quiero ordenarlo' },
+  { id: 'conectado', nombre: 'Piloto automático', frase: 'Quiero automatizar mis ventas', top: true }
+];
+const nom = id => NIVELES.find(n => n.id === id).nombre;
+
 /* ================== CONFIG ================== */
 const CONFIG = {
   whatsapp: '5493513294903',   // +54 9 351 329-4903
@@ -523,21 +531,23 @@ const CONFIG = {
   fotos: ['hero-atardecer', 'dulces-prueba', 'servicios-prueba', 'ropa-prueba', 'artesanias-prueba', 'qr-cartel', 'artesanias-sticker', 'dulces-sticker', 'servicios-tarjeta', 'ropa-sticker', 'pedido-listo', 'mostrando-la-demo', 'retrato-dueno'],
   mensajes: {
     base: 'Hola! Vi la propuesta de Driven By People para emprendedores y quiero que mis clientes me vuelvan a encontrar.',
-    plan_negocio: 'Me interesa el plan Negocio conectado: mi página, mi QR y consulta directa por WhatsApp.',
-    plan_encargos: 'Me interesa el plan Encargos y turnos: que mis clientes me pidan o reserven turno con todo armado, y mi agenda al día.'
+    plan_landing: `Me interesa mi landing (plan ${nom('landing')}): una página propia con mi información, que me encuentren en Google y que me consulten directo por WhatsApp.`,
+    plan_sitio: `Me interesa mi sitio completo (plan ${nom('sitio')}): mis productos o servicios por categoría y que mis clientes me hagan el pedido o reserven turno por WhatsApp.`,
+    plan_conectado: `Me interesa automatizar mis canales de venta (plan ${nom('conectado')}): primero analizar cómo vendo hoy y después definir qué conviene automatizar.`
   }
 };
-/* Lo que incluye cada plan: [texto, Negocio conectado, Encargos y turnos] */
+/* Lo que incluye cada nivel, en el orden de NIVELES: [texto, landing, sitio, conectado]. 1 = incluido, 0 = no, texto = se muestra tal cual */
 const INCLUYE = [
-  ['Tu página: qué hacés, agenda, precios de referencia y formas de pago', 1, 1],
-  ['QR para donde atendés', 1, 1],
-  ['Stickers para el packaging', 1, 1],
-  ['Consulta directa por WhatsApp', 1, 1],
-  ['Tarjeta digital', 1, 1],
-  ['Formulario de encargo o reserva de turno', 0, 1],
-  ['Agenda que actualizás con un WhatsApp', 0, 1],
-  ['Avisos de cierre o cambio de horario', 0, 1],
-  ['Contador de escaneos y mensajes', 0, 1]
+  ['Tu landing: qué hacés, precios, pagos y envíos', 1, 1, 1],
+  ['Que te encuentren en Google', 1, 1, 1],
+  ['Consulta directa por WhatsApp', 1, 1, 1],
+  ['Sitio completo: productos o servicios por categoría', 0, 1, 1],
+  ['Pedido o turno armado por WhatsApp', 0, 1, 1],
+  ['Posicionamiento local y métricas', 0, 1, 1],
+  ['Análisis de tus canales de venta', 0, 0, 1],
+  ['Automatizaciones: avisos, pedidos y seguimiento', 0, 0, 1],
+  ['Tu QR apunta a tu página', 1, 1, 1],
+  ['Mantenimiento mensual', 'opcional', 'opcional', 'a medida']
 ];
 /* Cada rubro: cómo te conocen, qué resuelve tu página y qué queda en sus manos */
 const PERFILES = {
@@ -546,7 +556,7 @@ const PERFILES = {
     f02: 'Alguien prueba tus alfajores.',
     valor: 'Con tu página, el próximo encargo por docena te llega completo por WhatsApp.',
     busqueda: 'los alfajores de maicena que probé el sábado',
-    f12: { h: 'El alfajor se come. La caja queda.', t: 'Un sticker con tu QR en cada caja. El que la vea en la mesa del cumpleaños, te encuentra.' },
+    f12: { h: 'El alfajor se come. Tu página queda.', t: 'El sticker de la caja lleva a tu página. Y cuando abrís pedidos, les avisás a los que ya te compraron, en un solo mensaje.' },
     img: { f02: 'dulces-prueba', f12: 'dulces-sticker' }
   },
   artesanias: {
@@ -554,7 +564,7 @@ const PERFILES = {
     f02: 'Alguien se lleva una de tus velas.',
     valor: 'Con tu página, elige la pieza o te la pide personalizada, y te llega ordenado en un solo mensaje.',
     busqueda: 'las velas de soja con aroma a miel',
-    f12: { h: 'La pieza queda. Y tu QR con ella.', t: 'Una etiqueta con tu QR en cada pieza. Cuando la regalen, el que la recibe te encuentra.' },
+    f12: { h: 'La pieza queda. Tu página, también.', t: 'La etiqueta lleva a tu página: ahí piden otra pieza o una personalizada, y todo te llega en un solo mensaje.' },
     img: { f02: 'artesanias-prueba', f12: 'artesanias-sticker' }
   },
   ropa: {
@@ -562,7 +572,7 @@ const PERFILES = {
     f02: 'Alguien se prueba uno de tus buzos.',
     valor: 'Con tu página, talles y colores a la vista, y el pedido te llega armado por WhatsApp.',
     busqueda: 'el buzo verde tejido a mano',
-    f12: { h: 'La bolsa queda. Y tu QR adentro.', t: 'Una etiqueta con tu QR en cada prenda. Cuando le pregunten "¿de dónde es?", ya tiene la respuesta.' },
+    f12: { h: 'La bolsa queda. Y tu página adentro.', t: 'La etiqueta lleva a tu página con talles y colores al día. Cuando le pregunten "¿de dónde es?", ya tiene la respuesta, y el pedido te llega armado por WhatsApp.' },
     img: { f02: 'ropa-prueba', f12: 'ropa-sticker' }
   },
   servicios: {
@@ -570,7 +580,7 @@ const PERFILES = {
     f02: 'Alguien se tira las cartas con vos.',
     valor: 'Con tu página, la sesión completa se reserva sola: tus turnos, desde tu página.',
     busqueda: 'la tarotista que me leyó las cartas',
-    f12: { h: 'Tu tarjeta queda.', t: 'Una tarjeta con tu QR al final de cada lectura. Cuando quieran la sesión completa, te encuentran.' },
+    f12: { h: 'Tu tarjeta queda. La reserva, también.', t: 'La tarjeta lleva a tu página: ahí reservan la sesión completa, y cada turno se recuerda solo.' },
     img: { f02: 'servicios-prueba', f12: 'servicios-tarjeta' }
   }
 };
@@ -644,7 +654,11 @@ function mountPhoto(holder, base) {
 /* tabla "lo que incluye" */
 const MK = '<span class="mk" role="img" aria-label="Incluido"><svg class="ic-svg" viewBox="0 0 24 24"><use href="#i-check"/></svg></span>';
 const NM = '<span class="nm" role="img" aria-label="No incluido">—</span>';
-$('#tbody').innerHTML = INCLUYE.map(([t, a, b]) => `<tr><th scope="row">${esc(t)}</th><td>${a ? MK : NM}</td><td class="star">${b ? MK : NM}</td></tr>`).join('');
+const celda = v => v === 1 ? MK : v === 0 ? NM : `<span class="mtn">${esc(v)}</span>`;
+$('#thead').innerHTML = '<tr><th scope="col">Incluye</th>' + NIVELES.map(n =>
+  `<th scope="col"${n.top ? ' class="star"' : ''}>${n.top ? '<span class="badge">El más completo</span>' : ''}<span class="pn">${esc(n.nombre)}</span><span class="pq">“${esc(n.frase)}”</span></th>`).join('') + '</tr>';
+$('#tbody').innerHTML = INCLUYE.map(([t, ...v]) =>
+  `<tr><th scope="row">${esc(t)}</th>${v.map((x, i) => `<td${NIVELES[i].top ? ' class="star"' : ''}>${celda(x)}</td>`).join('')}</tr>`).join('');
 
 /* acordeones: los 4 rubros a la vez */
 function buildAcc(host, key) {
