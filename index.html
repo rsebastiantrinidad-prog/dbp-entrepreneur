@@ -25,8 +25,8 @@
 <meta name="twitter:image" content="https://drivenbypeople.io/emprendedores/assets/og.jpg">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <script>
-/* Escritorio: los slides se pasan en horizontal. Se decide antes del primer dibujo para que no haya saltos. */
-(function(){try{if(matchMedia('(min-width:1180px) and (min-height:620px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches)document.documentElement.classList.add('hz')}catch(e){}})();
+/* Escritorio: un solo recorrido continuo hacia abajo (celular y tablet siguen como siempre). Se decide antes del primer dibujo para que no haya saltos. */
+(function(){try{if(matchMedia('(min-width:1180px) and (min-height:620px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches)document.documentElement.classList.add('flow')}catch(e){}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -262,26 +262,37 @@ html.scrolled .scrollhint{opacity:0;pointer-events:none}
 .foot small a{display:inline-block;padding:12px 0}
 @media(min-width:900px){.foot{flex-direction:row;align-items:center;gap:var(--s-4)}}
 
-/* ---------- escritorio: un slide por pantalla, el scroll los pasa en horizontal ---------- */
+/* ---------- escritorio: un solo recorrido continuo hacia abajo ----------
+   Cada bloque nace de abajo del anterior con una curva de hoja, las fotos se deslizan más lento que el texto
+   y nada queda "en pantallas": no hay contador, flechas ni saltos de un cuadro al siguiente. */
 .navgrp{display:none}
-html.hz .stage{position:relative;height:var(--runway,100vh)}
-html.hz .vp{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;overflow:clip}
-html.hz .deck{display:flex;height:100%;width:max-content;will-change:transform}
-html.hz .frame{flex:0 0 var(--fw,100vw);width:var(--fw,100vw);height:100%;min-height:0;padding-top:calc(var(--header-h) + var(--s-2));padding-bottom:var(--s-7);scroll-snap-align:none;content-visibility:visible;contain-intrinsic-block-size:auto;overflow:hidden}
-html.hz .frame.acc-frame{padding:0}
-html.hz .frame#portada,html.hz .frame.photo{justify-content:center}
-html.hz .frame#portada{padding-top:calc(var(--header-h) + var(--s-2))}
-html.hz .snap{position:absolute;left:0;width:1px;height:1px;scroll-snap-align:start;pointer-events:none}
-/* paralaje: la foto se desliza más lento que el slide */
-html.hz .bg>img,html.hz .pic>img{transform:translate3d(calc(var(--p,0)*-7%),0,0) scale(1.16)}
-html.hz .acc-p .bg>img{transform:scale(1.14)}
-html.hz .acc-p[aria-pressed="true"] .bg>img{transform:scale(1)}
-html.hz .acc-t{padding-bottom:var(--s-7)}
-html.hz .frame.photo .wrap{transform:translate3d(calc(var(--p,0)*-3.5vw),0,0)}
-html.hz .scrollhint{left:auto;right:var(--s-5);bottom:var(--s-4);transform:none;flex-direction:row;gap:8px}
-html.hz .scrollhint .ic-svg{transform:none}
-html.hz .navgrp{position:fixed;left:50%;bottom:14px;z-index:56;transform:translateX(-50%);display:flex;align-items:center;gap:8px}
-html.hz .rail{display:flex;align-items:center;gap:2px;padding:6px 10px;border-radius:var(--pill);background:rgba(6,32,30,.8);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+html.flow{scroll-snap-type:none;--sw:clamp(60px,11vh,120px)}
+html.flow .frame{min-height:100vh;padding-top:calc(var(--header-h) + var(--s-3));padding-bottom:calc(var(--sw) + var(--s-5));scroll-snap-align:none;content-visibility:visible;contain-intrinsic-block-size:auto;overflow:hidden}
+html.flow .frame:not(#portada){margin-top:calc(var(--sw) * -1);border-top-right-radius:100% var(--sw);box-shadow:0 -22px 44px -28px rgba(2,16,14,.6);content-visibility:visible;contain-intrinsic-block-size:auto}
+html.flow .frame:not(#portada):nth-of-type(even){border-top-right-radius:0;border-top-left-radius:100% var(--sw)}
+html.flow .frame.acc-frame{padding:0;height:100vh;min-height:0}
+html.flow .frame#portada,html.flow .frame.photo{justify-content:center}
+html.flow .frame#portada{padding-top:calc(var(--header-h) + var(--s-3));padding-bottom:calc(var(--sw) + var(--s-5))}
+/* paralaje: la foto se desliza más lento que la página y el texto un poco más lento que el bloque */
+html.flow .bg{inset:-6vh 0}
+html.flow .acc-p .bg{inset:0}
+html.flow .bg>img,html.flow .pic>img{transform:translate3d(0,calc(var(--p,0)*-5vh),0);will-change:transform}
+html.flow .acc-p .bg>img{transform:scale(1.14);will-change:auto}
+html.flow .acc-p[aria-pressed="true"] .bg>img{transform:scale(1)}
+html.flow .frame:not(.acc-frame) .wrap{translate:0 calc(var(--p,0)*-3vh);opacity:clamp(0,calc(1 + (var(--p,0) + .3) * 1.7),1)}
+html.flow #formula .big{translate:calc(var(--p,0)*-5vw) 0}
+html.flow #formula .fx{translate:calc(var(--p,0)*3vw) 0}
+html.flow .acc-t{padding-bottom:calc(var(--sw) + var(--s-4))}
+html.flow .acc-l{bottom:calc(var(--sw) + var(--s-4))}
+html.flow .acc-hint{top:calc(var(--sw) + var(--s-3));right:calc(var(--s-3) + 44px)}
+html.flow .acc{inset:0}
+html.flow .scrollhint{bottom:calc(var(--sw) + var(--s-3))}
+/* barra de arriba: sin contador, el avance es continuo */
+html.flow .hdr .hcount{display:none}
+html.flow .hdr .bar{transition:none}
+/* puntos de la derecha: un recorrido vertical, no una botonera de diapositivas */
+html.flow .navgrp{position:fixed;right:max(14px,env(safe-area-inset-right));top:50%;z-index:56;transform:translateY(-50%);display:flex;align-items:center}
+html.flow .rail{display:flex;flex-direction:column;align-items:center;padding:10px 3px;border-radius:var(--pill);background:rgba(6,32,30,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .tick{position:relative;display:grid;place-items:center;width:26px;height:32px}
 .tick::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55);transition:width var(--dur-state) var(--ease-state),background var(--dur-state)}
 .tick:hover::before{background:#fff}
@@ -289,26 +300,32 @@ html.hz .rail{display:flex;align-items:center;gap:2px;padding:6px 10px;border-ra
 .tick:focus-visible{outline:3px solid #80DDD6;outline-offset:1px;border-radius:var(--pill)}
 .tick::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);padding:6px 10px;border-radius:8px;background:var(--night);color:#fff;font-size:.8125rem;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity var(--dur-micro)}
 .tick:hover::after,.tick:focus-visible::after{opacity:1}
-html.hz .arrow{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.95);color:var(--ink);box-shadow:0 8px 24px -8px rgba(6,32,30,.55);transition:opacity var(--dur-state),transform var(--dur-micro),background var(--dur-micro)}
-html.hz .arrow:hover{background:var(--teal);transform:scale(1.06)}
-html.hz .arrow[disabled]{opacity:0;pointer-events:none}
-html.hz .arrow .ic-svg{width:22px;height:22px;stroke-width:2.4}
-html.hz #problema .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-7);align-items:center}
-html.hz #incluye .wrap{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:var(--s-6);align-items:center;max-width:1320px}
-html.hz #incluye .inc-left{display:block}
-html.hz #incluye .tblwrap{margin-top:0;order:0}
-html.hz #incluye .plan-cta,html.hz #incluye .note{order:0}
-html.hz #incluye .plan-cta{grid-template-columns:1fr}
-html.hz .tbl col.c{width:clamp(100px,10vw,140px)}
-html.hz .tbl thead th{padding-top:10px;padding-bottom:10px}
-html.hz .tbl tbody th,html.hz .tbl tbody td{padding-top:8px;padding-bottom:8px}
-html.hz .tbl tbody th{font-size:.875rem}
-@media(max-height:790px){html.hz .tbl tbody th,html.hz .tbl tbody td{padding-top:5px;padding-bottom:5px}html.hz .tbl .pq{display:none}}
-html.hz #cierre{--fw:max(125vw,1500px)}
-html.hz #cierre .pic{position:absolute;inset:0;z-index:-1;aspect-ratio:auto;border-radius:0}
-html.hz #cierre .pic::after{content:"";position:absolute;inset:0;background:rgba(4,32,30,.6)}
-html.hz #cierre .wrap{grid-template-columns:minmax(0,640px);align-items:start;max-width:none;padding-inline:max(var(--px),6vw)}
-@media(min-width:900px){html:not(.hz) #cierre .wrap{grid-template-columns:1.1fr .9fr;align-items:center;gap:var(--s-7)}html:not(.hz) #cierre .foot{grid-column:1/-1}}
+html.flow .tick{height:24px}
+html.flow .tick::before{transition:height var(--dur-state) var(--ease-state),background var(--dur-state)}
+html.flow .tick[aria-current="step"]::before{width:7px;height:20px}
+html.flow .tick::after{bottom:auto;left:auto;right:calc(100% + 12px);top:50%;transform:translateY(-50%)}
+/* composición de cada bloque en pantalla ancha: alturas distintas para que no se sientan cuadros iguales */
+html.flow #problema{min-height:86vh}
+html.flow #formula{min-height:96vh}
+html.flow #incluye{min-height:92vh}
+html.flow #cartel,html.flow #primero{min-height:94vh}
+html.flow #encargo{min-height:88vh}
+html.flow #cierre{padding-bottom:var(--s-7)}
+html.flow #problema .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s-7);align-items:center}
+html.flow #incluye .wrap{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:var(--s-6);align-items:center;max-width:1320px}
+html.flow #incluye .inc-left{display:block}
+html.flow #incluye .tblwrap{margin-top:0;order:0}
+html.flow #incluye .plan-cta,html.flow #incluye .note{order:0}
+html.flow #incluye .plan-cta{grid-template-columns:1fr}
+html.flow .tbl col.c{width:clamp(100px,10vw,140px)}
+html.flow .tbl thead th{padding-top:10px;padding-bottom:10px}
+html.flow .tbl tbody th,html.flow .tbl tbody td{padding-top:8px;padding-bottom:8px}
+html.flow .tbl tbody th{font-size:.875rem}
+@media(max-height:790px){html.flow .tbl tbody th,html.flow .tbl tbody td{padding-top:5px;padding-bottom:5px}html.flow .tbl .pq{display:none}}
+html.flow #cierre .pic{position:absolute;inset:-6vh 0;z-index:-1;aspect-ratio:auto;border-radius:0}
+html.flow #cierre .pic::after{content:"";position:absolute;inset:0;background:rgba(4,32,30,.6)}
+html.flow #cierre .wrap{grid-template-columns:minmax(0,640px);align-items:start;max-width:none;padding-inline:max(var(--px),6vw)}
+@media(min-width:900px){html:not(.flow) #cierre .wrap{grid-template-columns:1.1fr .9fr;align-items:center;gap:var(--s-7)}html:not(.flow) #cierre .foot{grid-column:1/-1}}
 
 /* ---------- movimiento reducido ---------- */
 @media(prefers-reduced-motion:reduce){
@@ -499,9 +516,7 @@ html.hz #cierre .wrap{grid-template-columns:minmax(0,640px);align-items:start;ma
 </main></div></div>
 
 <div class="navgrp" id="navgrp">
-  <button type="button" class="arrow prev" id="aPrev" aria-label="Slide anterior"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg></button>
-  <nav class="rail" id="rail" aria-label="Ir a un slide"></nav>
-  <button type="button" class="arrow next" id="aNext" aria-label="Slide siguiente"><svg class="ic-svg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+  <nav class="rail" id="rail" aria-label="Ir a una parte de la propuesta"></nav>
 </div>
 <p class="sr" id="live" aria-live="polite"></p>
 
@@ -631,7 +646,7 @@ $$('[data-plan]').forEach(b => b.addEventListener('click', () => openWA(buildMsg
 /* ================== slides ================== */
 const frames = $$('.frame'), N = frames.length;
 frames.forEach((f, i) => { $$('.eyebrow .n', f).forEach(n => { n.textContent = pad(i + 1); }); });
-const stage = $('#stage'), deck = $('#deck'), bar = $('#bar');
+const bar = $('#bar');
 let cur = 1;
 
 /* fotos (con aparición suave) */
@@ -686,96 +701,59 @@ function applyProfile() {
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
 
 /* slide actual, progreso y anuncio */
-let hz = false, liveTimer;
+let flow = root.classList.contains('flow'), liveTimer;
 function setCur(n, force) {
   if (n === cur && !force) return;
   cur = n;
   $('#hCount').textContent = pad(n) + ' / ' + N;
-  bar.style.transform = 'scaleX(' + (n / N) + ')';
+  if (!flow) bar.style.transform = 'scaleX(' + (n / N) + ')';
   $$('.tick').forEach((t, i) => { const on = i + 1 === n; if (on) t.setAttribute('aria-current', 'step'); else t.removeAttribute('aria-current'); t.tabIndex = on ? 0 : -1; });
-  $('#aPrev').disabled = n <= 1; $('#aNext').disabled = n >= N;
   clearTimeout(liveTimer);
-  liveTimer = setTimeout(() => { $('#live').textContent = 'Slide ' + n + ' de ' + N + ': ' + frames[n - 1].dataset.title; }, 700);
+  liveTimer = setTimeout(() => { $('#live').textContent = (flow ? 'Parte ' : 'Slide ') + n + ' de ' + N + ': ' + frames[n - 1].dataset.title; }, 700);
 }
-const curIO = new IntersectionObserver(es => { if (hz) return; es.forEach(e => { if (e.isIntersecting) setCur(frames.indexOf(e.target) + 1); }); }, { rootMargin: '-45% 0px -45% 0px' });
+const curIO = new IntersectionObserver(es => { if (flow) return; es.forEach(e => { if (e.isIntersecting) setCur(frames.indexOf(e.target) + 1); }); }, { rootMargin: '-45% 0px -45% 0px' });
 frames.forEach(f => curIO.observe(f));
 
-/* ---------- escritorio: un slide por pantalla, el scroll los pasa en horizontal ---------- */
-const mqHz = matchMedia('(min-width:1180px) and (min-height:620px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
-const K = 2;
-let lefts = [], widths = [], maxX = 0, target = null, ticking = false, targetTimer;
-function measure() {
-  lefts = frames.map(f => f.offsetLeft); widths = frames.map(f => f.offsetWidth);
-  maxX = Math.max(0, deck.scrollWidth - innerWidth);
-  stage.style.setProperty('--runway', Math.round(maxX / K + innerHeight) + 'px');
-  $$('.snap', stage).forEach(n => n.remove());
-  lefts.forEach(l => { const m = document.createElement('i'); m.className = 'snap'; m.setAttribute('aria-hidden', 'true'); m.style.top = Math.round(Math.min(l, maxX) / K) + 'px'; stage.append(m); });
-}
-function frameAt(x) { const c = x + innerWidth / 2; let i = 0; for (let k = 0; k < lefts.length; k++) if (lefts[k] <= c) i = k; return i; }
-function onScrollHz() {
-  if (!hz) return;
-  const x = Math.min(maxX, scrollY * K);
-  deck.style.transform = 'translate3d(' + (-x) + 'px,0,0)';
-  for (let i = 0; i < N; i++) {
-    const l = lefts[i], w = widths[i];
-    if (l > x + innerWidth * 1.5 || l + w < x - innerWidth * .5) continue;
-    frames[i].style.setProperty('--p', Math.max(-1.5, Math.min(1.5, ((l + w / 2) - (x + innerWidth / 2)) / innerWidth)).toFixed(3));
-  }
-  setCur(frameAt(x) + 1);
-  root.classList.toggle('scrolled', x > 40);
-  if (target && Math.abs(x - Math.min(lefts[target - 1], maxX)) < 3) target = null;
+/* ---------- escritorio: un solo recorrido continuo hacia abajo ---------- */
+const mqDesk = matchMedia('(min-width:1180px) and (min-height:620px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)');
+let ticking = false;
+function onScrollFlow() {
+  const vh = innerHeight;
+  let near = 0, nd = Infinity;
+  frames.forEach((f, i) => {                          // --p: -1 cuando el bloque ya se fue por arriba, 0 en el centro, 1 cuando todavía asoma por abajo
+    const r = f.getBoundingClientRect();
+    if (r.bottom < -vh * .25 || r.top > vh * 1.25) return;
+    const p = ((r.top + r.height / 2) - vh / 2) / ((r.height + vh) / 2);
+    f.style.setProperty('--p', Math.max(-1.2, Math.min(1.2, p)).toFixed(3));
+    if (Math.abs(p) < nd) { nd = Math.abs(p); near = i; }
+  });
+  setCur(near + 1);                                   // el bloque más centrado es el actual (puntos de la derecha)
+  const max = document.documentElement.scrollHeight - vh;
+  bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0).toFixed(4) + ')';
 }
 addEventListener('scroll', () => {
-  if (!hz) { root.classList.toggle('scrolled', scrollY > 40); return; }
-  if (ticking) return; ticking = true;
-  requestAnimationFrame(() => { ticking = false; onScrollHz(); });
+  root.classList.toggle('scrolled', scrollY > 40);
+  if (!flow || ticking) return; ticking = true;
+  requestAnimationFrame(() => { ticking = false; onScrollFlow(); });
 }, { passive: true });
-const base = () => (hz && target) ? target : cur;
 function goFrame(n, instant) {
   n = Math.min(N, Math.max(1, n));
-  const behavior = (RM || instant) ? 'instant' : 'smooth';
-  if (hz) { target = n; clearTimeout(targetTimer); targetTimer = setTimeout(() => { target = null; }, 2500); scrollTo({ top: Math.min(lefts[n - 1], maxX) / K, behavior }); }
-  else { frames[n - 1].scrollIntoView({ behavior, block: 'start' }); setCur(n); }
+  frames[n - 1].scrollIntoView({ behavior: (RM || instant) ? 'instant' : 'smooth', block: 'start' });
+  setCur(n);
 }
 function applyMode() {
-  const prev = hz, keep = cur;
-  hz = mqHz.matches;
-  root.classList.toggle('hz', hz);
-  if (hz) { try { history.scrollRestoration = 'manual'; } catch (e) {} measure(); }
-  else { deck.style.transform = ''; stage.style.removeProperty('--runway'); $$('.snap', stage).forEach(n => n.remove()); frames.forEach(f => f.style.removeProperty('--p')); }
-  $('#hintTxt').textContent = hz ? 'Deslizá o usá ← →' : 'Deslizá';
-  if (prev !== hz) { root.classList.add('nocv'); goFrame(keep, true); requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('nocv'))); }
-  if (hz) onScrollHz();
+  const prev = flow, keep = cur;
+  flow = mqDesk.matches;
+  root.classList.toggle('flow', flow);
+  if (!flow) { frames.forEach(f => f.style.removeProperty('--p')); bar.style.transform = 'scaleX(' + (cur / N) + ')'; }
+  if (prev !== flow) { root.classList.add('nocv'); goFrame(keep, true); requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove('nocv'))); }
+  if (flow) onScrollFlow();
 }
-mqHz.addEventListener('change', applyMode);
-addEventListener('resize', () => { if (hz) { const keep = cur; measure(); goFrame(keep, true); onScrollHz(); } });
-addEventListener('wheel', e => {                     // gesto horizontal del trackpad
-  if (!hz || e.ctrlKey || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
-  e.preventDefault(); scrollBy({ top: e.deltaX, behavior: 'instant' });
-}, { passive: false });
-document.addEventListener('click', e => {             // enlaces internos (#incluye…)
-  const a = e.target.closest('a[href^="#"]'); if (!a) return;
-  const i = frames.findIndex(f => f.id === a.getAttribute('href').slice(1));
-  if (i >= 0 && hz) { e.preventDefault(); goFrame(i + 1); }
-});
-document.addEventListener('focusin', e => {           // tabular a un slide fuera de pantalla lo trae
-  if (!hz) return;
-  const f = e.target.closest && e.target.closest('.frame'); if (!f) return;
-  const r = f.getBoundingClientRect();
-  if (r.left < -4 || r.right > innerWidth + 4) goFrame(frames.indexOf(f) + 1, true);
-});
-document.addEventListener('keydown', e => {
-  if (!hz || e.ctrlKey || e.metaKey || e.altKey || (e.target.closest && e.target.closest('input,textarea,select'))) return;
-  if (e.key === 'ArrowRight') { e.preventDefault(); goFrame(base() + 1); }
-  else if (e.key === 'ArrowLeft') { e.preventDefault(); goFrame(base() - 1); }
-  else if (e.key === 'Home') { e.preventDefault(); goFrame(1); }
-  else if (e.key === 'End') { e.preventDefault(); goFrame(N); }
-});
+mqDesk.addEventListener('change', applyMode);
+addEventListener('resize', () => { if (flow) onScrollFlow(); });
 const rail = $('#rail');
-rail.innerHTML = frames.map((f, i) => `<button type="button" class="tick" tabindex="-1" data-i="${i + 1}" data-tip="${pad(i + 1)} · ${esc(f.dataset.title)}" aria-label="Ir al slide ${i + 1} de ${N}: ${esc(f.dataset.title)}"></button>`).join('');
+rail.innerHTML = frames.map((f, i) => `<button type="button" class="tick" tabindex="-1" data-i="${i + 1}" data-tip="${esc(f.dataset.title)}" aria-label="Ir a ${esc(f.dataset.title)} (parte ${i + 1} de ${N})"></button>`).join('');
 rail.addEventListener('click', e => { const b = e.target.closest('.tick'); if (b) goFrame(+b.dataset.i); });
-$('#aPrev').addEventListener('click', () => goFrame(base() - 1));
-$('#aNext').addEventListener('click', () => goFrame(base() + 1));
 
 /* ================== arranque ================== */
 $('#eb01').textContent = S.name ? 'Para ' + S.name : 'Propuesta · Emprendedores de Córdoba';
@@ -787,7 +765,8 @@ $$('.rv').forEach(el => io.observe(el));
 applyMode();
 setCur(1, true);
 const i0 = frames.findIndex(f => '#' + f.id === location.hash);
-if (i0 > 0) goFrame(i0 + 1, true); else if (hz) scrollTo({ top: 0, behavior: 'instant' });
+if (i0 > 0) goFrame(i0 + 1, true);
+if (flow) onScrollFlow();
 })();
 
 </script>
